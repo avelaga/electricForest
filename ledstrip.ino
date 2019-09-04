@@ -3,8 +3,8 @@
 #define NUM_LEDS    70
 #define fastLower    1
 #define fastUpper    2
-#define slowLower    3
-#define slowUpper    7
+#define slowLower    1
+#define slowUpper    3
 #define lowerCol 150
 #define upperCol 200
 
@@ -13,14 +13,14 @@ ledstrip::ledstrip() {
   pause = random(5, 10);
   spedUp = false;
   speed = 2;
-  col=random(lowerCol,upperCol);
+  col = random(lowerCol, upperCol);
 }
 
 int ledstrip::update(int frames, boolean motionDetected) {
 
   // new motion detected
   if (!spedUp && motionDetected) {
-    
+
     pause = random(fastLower, fastUpper);
     spedUp = true;
   }
@@ -35,11 +35,11 @@ int ledstrip::update(int frames, boolean motionDetected) {
   if (frames % pause == 0) {
     pos -= 1;
 
-//    Serial.print("current object pos "); Serial.println(pos);
-    if (pos <-5) {
+    //    Serial.print("current object pos "); Serial.println(pos);
+    if (pos < -5) {
 
       pos = NUM_LEDS;
-      col=random(lowerCol,upperCol);
+      col = random(lowerCol, upperCol);
 
       if (!spedUp) {
         pause = random(slowLower, slowUpper);
